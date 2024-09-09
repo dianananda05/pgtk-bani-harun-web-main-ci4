@@ -5,31 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Page</title>
     <style>
-        /* Styling for the background */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            font-family: 'Nunito Sans';
+            font-family: 'Nunito Sans', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #4880FF;
         }
 
-        /* Ensuring that all form elements are aligned to the left */
-        .login-box form {
-            text-align: left; /* This ensures that all text inside the form is aligned to the left */
-        }
-
-        /* Label specific styling */
-        .login-box label {
-            display: block; /* Makes the label a block element, forcing it to occupy the full width */
-            margin-bottom: 5px; /* Adds space below the label */
-            font-weight: 600; /* Makes the label a bit bold */
-        }
-
-        /* Styling for the login box */
         .login-box {
             background-color: white;
             border-radius: 16px;
@@ -39,7 +25,6 @@
             text-align: center;
         }
 
-        /* Title styling */
         .login-box h1 {
             font-size: 24px;
             font-weight: 700;
@@ -47,58 +32,61 @@
             color: #202224;
         }
 
-        /* Subtitle styling */
         .login-box p {
             margin-bottom: 30px;
             color: #6b6b6b;
             font-size: 14px;
         }
 
-        /* Input field styling */
-        .login-box input {
+        .login-box form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #d0d0d0;
-            border-radius: 8px;
+        }
+
+        .login-box label {
+            align-self: flex-start;
+            font-weight: 600;
+            margin-bottom: 8px;
             font-size: 14px;
         }
 
-        /* Checkbox and link styling */
-        .login-box .checkbox-link {
-            display: flex;
-            justify-content: space-between;
-            align-items: left;
+        .login-box input {
+            width: 100%;
+            padding: 12px;
             margin-bottom: 20px;
-            font-size: 12px;
+            border: 1px solid #d0d0d0;
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .checkbox-link {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
             color: #6b6b6b;
         }
 
-        .login-box .checkbox-link a {
-            color: #4880FF;
-            text-decoration: none;
-        }
-
-        /* Ensures that the checkbox and its label are in the same line */
         .checkbox-container {
             display: flex;
             align-items: center;
-            gap: 8px; /* Adds a small gap between the checkbox and the label text */
         }
 
-        /* Style for the checkbox */
         .checkbox-container input[type="checkbox"] {
+            margin: 0;
+            margin-right: 8px;
             width: 16px;
             height: 16px;
         }
 
-        /* Ensures label text is properly aligned */
         .checkbox-container label {
-            font-size: 14px;
+            margin: 0;
             font-weight: normal;
         }
 
-        /* Button styling */
         .login-box button {
             background-color: #4880FF;
             color: white;
@@ -108,38 +96,35 @@
             width: 100%;
             font-size: 16px;
             cursor: pointer;
+            margin-bottom: 20px;
         }
 
-        /* Responsive adjustment */
+        .signin-link {
+            font-size: 14px;
+            text-align: center;
+            width: 100%; /* Ensure the container takes full width */
+            margin-top: 20px; /* Adjust top margin if needed */
+        }
+
         @media screen and (max-width: 480px) {
             .login-box {
                 width: 90%;
             }
         }
-
-        /* Center the sign-in link */
-        .signin-link {
-            margin-top: 20px;
-            font-size: 14px;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
-
     <div class="login-box">
         <h1>REGISTRASI</h1>
         <p>Buat Akun Untuk Masuk ke Menu Dashboard</p>
         
         <form action="/auth/registerUser" method="post">
             <?= csrf_field() ?>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Email" required>
-            </div>
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Email" required>
 
             <label for="username">Username</label>
-            <input type="username" id="username" placeholder="Username" required>
+            <input type="text" id="username" placeholder="Username" required>
             
             <label for="password">Password</label>
             <input type="password" id="password" placeholder="Password" required>
@@ -165,14 +150,9 @@
             const passwordInput = document.getElementById('password');
 
             showPasswordCheckbox.addEventListener('change', function() {
-                if (this.checked) {
-                    passwordInput.type = 'text';
-                } else {
-                    passwordInput.type = 'password';
-                }
+                passwordInput.type = this.checked ? 'text' : 'password';
             });
         });
     </script>
-
 </body>
 </html>
