@@ -68,7 +68,14 @@
         <i class="fas fa-search search-icon"></i>
         <input type="text" class="search-bar" placeholder="Search">
     </div>
-    <div class="user-profile"></div>
+    <div class="user-profile">
+        <img src="<?= base_url('assets/img/profil-user.png') ?>" alt="Profil User">
+        <div class="profile-info">
+            <h3>Moni Roy</h3>
+            <p>Admin</p>
+        </div>
+        <i class="fas fa-chevron-down"></i>
+    </div>
 </div>
 
 <div class="title">

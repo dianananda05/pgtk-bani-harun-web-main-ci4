@@ -7,8 +7,8 @@ class Home extends BaseController
     public function index()
     {
         $menu = [
-            ['icon' => 'fas fa-tachometer-alt', 'label' => 'Dashboard', 'url' => '/dashboard'],
-            ['icon' => 'fas fa-user-friends', 'label' => 'Pengguna', 'url' => '/pengguna'],
+            ['icon' => 'fas fa-tachometer-alt', 'label' => 'Dashboard', 'url' => '/dashboard/admin'],
+            ['icon' => 'fas fa-user-friends', 'label' => 'Pengguna', 'url' => '/menu/pengguna'],
             ['icon' => 'fas fa-money-bill', 'label' => 'Cash Flow', 'url' => '/cash-flow'],
             ['icon' => 'far fa-chart-bar', 'label' => 'Website', 'url' => '/website'],
             ['icon' => 'fas fa-tasks', 'label' => 'Pemasukan', 'url' => '/pemasukan'],

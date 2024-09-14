@@ -28,6 +28,8 @@
             position: fixed; /* Menempel di sisi kiri */
             top: 0; /* Menempel di atas */
             bottom: 0; /* Menempel di bawah */
+            left: 0; /* Menempel di kiri */
+            z-index: 1001; /* Memastikan sidebar selalu di atas */
         }
         .logo {
             display: flex;
@@ -67,7 +69,7 @@
             padding: 20px;
             margin-top: 60px; 
             transition: margin-left 0.3s ease;
-            margin-left: 300px; /* Menyisakan ruang untuk sidebar */
+            margin-left: 290px; /* Menyisakan ruang untuk sidebar */
             position: relative; 
         }
         .header {
@@ -82,6 +84,7 @@
             background-color: #fff;
             border-bottom: 1px solid #e0e0e0;
             z-index: 1000; 
+            transition: left 0.3s ease; /* Transisi untuk pergerakan header */
         }
         .search-container {
             position: relative;
@@ -104,10 +107,48 @@
             color: #aaa;
         }
         .user-profile {
-            width: 40px;
-            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #fff; 
+            border-radius: 8px;
+            padding: 10px;
+            position: relative;
+        }
+        .user-profile img {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background-color: #ccc;
+            object-fit: cover;
+        }
+        .user-profile i {
+            margin-left: auto;
+            color: #888;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #f0f0f0; /* Light background color for the circle */
+            padding: 10px; /* Padding to make the icon look centered in the circle */
+            border-radius: 50%; /* Makes the icon container circular */
+            border: 1px solid #ddd; /* Optional: Add a slight border to the circle */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
+        }
+        .profile-info h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #202224;
+        }
+        .profile-info p {
+            margin: 0;
+            color: #aaa;
+            font-size: 12px;
         }
         .stats {
             display: flex;
@@ -148,11 +189,10 @@
             border-bottom: 1px solid #e0e0e0;
         }
         .sidebar.hidden {
-            transform: translateX(-250px); /* Menggeser sidebar keluar layar */
+            transform: translateX(-290px); /* Menggeser sidebar keluar layar */
         }
         .main-content.expanded {
             margin-left: 0; /* Konten meluas saat sidebar disembunyikan */
-            width: 100%;
         }
         .menu-item a {
             color: inherit; /* Menggunakan warna teks yang sama dengan elemen lainnya */
@@ -199,14 +239,35 @@
     </div>
 
     <script>
-        document.getElementById("toggle-sidebar").addEventListener("click", function() {
+        document.addEventListener("DOMContentLoaded", function() {
             var sidebar = document.getElementById("sidebar");
             var mainContent = document.querySelector(".main-content");
-            sidebar.classList.toggle("hidden");
-            mainContent.classList.toggle("expanded");
+            var header = document.querySelector(".header");
+            var toggleButton = document.getElementById("toggle-sidebar");
+
+            function toggleSidebar() {
+                sidebar.classList.toggle("hidden");
+                mainContent.classList.toggle("expanded");
+                if (sidebar.classList.contains("hidden")) {
+                    header.style.left = "0";
+                    mainContent.style.marginLeft = "0";
+                } else {
+                    header.style.left = "290px";
+                    mainContent.style.marginLeft = "290px";
+                }
+            }
+
+            if (toggleButton) {
+                toggleButton.addEventListener("click", toggleSidebar);
+            }
+
+            // Check initial state
+            if (sidebar.classList.contains("hidden")) {
+                header.style.left = "0";
+                mainContent.style.marginLeft = "0";
+            }
         });
     </script>
 
 </body>
 </html>
-
